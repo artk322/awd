@@ -20,7 +20,25 @@ export default new Vuex.Store({
           state.records.splice(idx, 1);
         }
       })
-    }
+    },
+    saveRecord(state, paylaod) {
+      state.records = state.records.map(it => {
+        if (it.id == paylaod.id) {
+          it = {
+            ...paylaod
+          }
+        }
+        return it;
+      })
+      console.log(state.records);
+    },
+    editRecord(state, id) {
+      state.records.find(it => {
+        if (it.id == id) {
+          it.is_editable = true;
+        }
+      })
+    },
   },
   actions: {
 
